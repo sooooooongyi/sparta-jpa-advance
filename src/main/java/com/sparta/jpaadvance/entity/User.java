@@ -17,6 +17,11 @@ public class User {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "user") // 지연로딩이 default
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}) // 지연로딩이 default
     private List<Food> foodList = new ArrayList<>();
+
+    public void addFoodList(Food food) {
+        this.foodList.add(food);
+        food.setUser(this);
+    }
 }
