@@ -18,6 +18,7 @@ public class Food {
     private String name;
     private double price;
 
-    @OneToMany(mappedBy = "food")
-    private List<Order> orderList = new ArrayList<>();
+    @ManyToOne // 즉시가 default
+    @JoinColumn(name="user_id")
+    private User user;
 }
